@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-betal/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha385-0evHe/
+        X+R7YkIZDRvuzKMRqM+0rBnVFBL6D0itfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Flask Upload and Show Images</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 mx-auto mt-5 text-center">
+                <h1 class="mb-5">Flask Image Upload and Show</h1>
+                <form method="post" enctype="multipart/form-data">
+                    {{form.hidden_tag()}}
+
+                    {% if form.photos %}
+                    {% for error in form.photos.errors %}
+                    <span style="color:red;">{{error}}</span>
+                    {% endfor %}
+                    {% endif %}
+
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                            {{ form.photo(class="form-control") }}
+                        </div>
+                        <div class="col-auto">
+                            {{ form.submit(class="btn btn-success") }}
+                        </div>
+                    </div>
+
+                </form>
+
+                {% if file_url %}
+                <div class="mt-5">
+                    <img src="{{ file_url}}" style="width: 400px;">
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
